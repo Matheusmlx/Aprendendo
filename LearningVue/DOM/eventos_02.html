@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <h4>{{mensagem}}</h4>
+    <p>{{contador}}</p>
+    <button v-on:click="maisum(5,$event)">Somar mais um </button>
+    <p v-on:mousemove="atualizarXY">{{x}} e {{y}}</p>
+</div>
+
+<script>
+ new Vue({
+     el:'#app',
+     data:{
+         mensagem:"Contador",
+         contador:0,
+         x:0,
+         y:0,
+     },
+     methods:{
+         maisum(numero,event){
+            this.contador+=numero;
+            console.log(event)
+         },
+         atualizarXY(event){
+             this.x= event.clientX;
+             this.y=event.clientY;
+         }
+     }
+ })
+
+
+</script>

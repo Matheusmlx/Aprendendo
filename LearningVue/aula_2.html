@@ -1,0 +1,61 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--
+<div id="app">
+    <input type="text" v-on:input="alterarTitulo">
+    <p>{{titulo}}</p>
+</div>
+
+<script>
+ new Vue({
+     el:'#app',
+     data:{
+         titulo:'Usando VueJs'
+     },
+     methods:{
+        alterarTitulo(event){
+          this.titulo=event.target.value  
+        }
+     }
+    })
+-->
+
+<!--
+    /*v-on é uma diretiva que serve para escutar eventos do DOM
+    e rodar algum Javascript quando tal evento for*/
+</script>
+-->
+<!--
+<div id="example-1">
+    <button v-on:click="counter+=1">Adiciona 1</button>
+    <p>Quantas vezes o botão acima foi clicado:{{counter}}</p>
+</div>
+-->
+<!--v-on tambem pode aceitar o nome de u método que você gostaria de chamar-->
+<div id="example-2">
+        <!-- `greet` é o nome de um método definido abaixo -->
+        <button v-on:click="greet">Cumprimentar</button>
+      </div>
+
+<script>
+   var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    name: 'Vue.js'
+  },
+  // define métodos dentro do objeto `methods`
+  methods: {
+    greet: function (event) {
+      // `this` dentro de métodos aponta para a instância Vue
+      alert('Olá ' + this.name + '!')
+      // `event` é o evento DOM nativo
+      if (event) {
+        alert(event.target.tagName)
+      }
+    }
+  }
+})
+
+// você pode invocar métodos no JavaScript também
+example2.greet() // => 'Olá Vue.js!'
+
+</script>

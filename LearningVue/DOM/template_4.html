@@ -1,0 +1,33 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p v-once>{{titulo}}</p>
+    <p>{{saudacao()}}</p>
+    <p v-html="linkHtml"></p>
+    <hr>
+    <a v-bind:href="link">Google</a>
+</div>
+
+<script>
+ new Vue({
+     el:'#app',
+     data:{
+         titulo:"Usando VueJs",
+         link:"https://google.com",
+         linkHtml:'<a href="http://google.com">Google</a>'
+     },
+     methods:{
+         saudacao(){
+             this.titulo='Bom dia'
+             return this.titulo
+         }
+     }
+ })
+/*v-bind 
+ Forma abreviada :
+ Uso: Dinamicamente faz a interligação de um ou mais atributos ou propriedades de um componente a uma expressão
+ 
+v-once renderiza o elemento e componente apenas uma vez
+*/
+
+</script>

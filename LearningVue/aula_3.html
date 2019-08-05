@@ -1,0 +1,21 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+   <input type="text" v-on:input="alterarNome">
+   <p>{{name}}</p>
+</div>
+
+<script>
+  // this.name = event.target.value;
+  new Vue({
+    el:'#app',
+    data:{
+      name:'Usando Vuejs'
+    },
+    methods:{
+      alterarNome(event){
+        this.name=event.target.value;
+      }
+    }
+  })
+</script>
