@@ -9,8 +9,8 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 app.use(cors());
-
 //cors precisa estar antes das rotas
+//configurando o express para aceitar jsons nas requisições
 app.use(express.json());
 app.use(routes);
 

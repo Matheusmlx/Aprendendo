@@ -11,14 +11,22 @@ const DevSchema = new Schema(
     },
     likes: [
       {
+        //relacionando o banco , como se fosse uma chave estrangeira
         type: Schema.Types.ObjectId,
         ref: "Dev"
       }
     ],
-    dislikes: []
+    dislikes: [
+      {
+        //relacionando o banco , como se fosse uma chave estrangeira
+        type: Schema.Types.ObjectId,
+        ref: "Dev"
+      }
+    ]
   },
   {
     timestamps: true
+    //createdAt, updatedAt - Salva a data de criação e a data da ultima atualização
   }
 );
 

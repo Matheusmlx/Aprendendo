@@ -17,6 +17,7 @@ module.exports = {
       console.log("Deu MATCH");
     }
 
+    //Adicionando um novo id do dev que voce deu like
     loggedDev.likes.push(targetDev._id);
 
     await loggedDev.save();
