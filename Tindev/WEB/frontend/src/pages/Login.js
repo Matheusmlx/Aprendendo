@@ -15,8 +15,6 @@ export default function Login({ history }) {
       username,
     })
 
-
-
     const { _id } = response.data
     console.log(_id)
     //redirecionar o usuario para a rota 
