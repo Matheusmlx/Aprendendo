@@ -5,10 +5,12 @@ import logo from "../assets/logo.svg";
 import like from "../assets/like.svg";
 import api from '../services/api'
 import dislike from "../assets/dislike.svg";
+import itsamacth from "../assets/itsamatch.png";
 import './Main.css';
 //com esse match você tem acesso a todos os parametros passsados para esssa rota
 export default function Main({ match }) {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]);
+    const [matchDev, setMatchDev] = useState(null)
     //Conectando com a API
     useEffect(() => {
         async function loadUsers() {
@@ -23,7 +25,13 @@ export default function Main({ match }) {
     }, [match.params.id])
     //Configurando o websockt
     useEffect(() => {
-        const socket = io('http://localhost:3333');
+        const socket = io('http://localhost:3333', {
+            query: { user: match.params.id }
+        });
+
+        socket.on('match', dev => {
+            setMatchDev(dev);
+        })
 
     }, [match.params.id]);
 
@@ -81,7 +89,15 @@ export default function Main({ match }) {
                     <div className="empty"> Acabou :(</div>
                 )}
 
-
+            {matchDev && (
+                <div className="match-container">
+                    <img src={itsamacth} alt="It's a match"></img>
+                    <img className="avatar" src={matchDev.avatar}></img>
+                    <strong>{matchDev.name}</strong>
+                    <p> {matchDev.bio}</p>
+                    <button type="button" onClick={() => setMatchDev(null)}>FECHAR</button>
+                </div>
+            )}
         </div>
 
     );
