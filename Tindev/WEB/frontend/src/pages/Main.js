@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import io from 'socket.io-client'
 import { Link } from 'react-router-dom'
 import logo from "../assets/logo.svg";
 import like from "../assets/like.svg";
@@ -8,7 +9,7 @@ import './Main.css';
 //com esse match você tem acesso a todos os parametros passsados para esssa rota
 export default function Main({ match }) {
     const [users, setUsers] = useState([])
-
+    //Conectando com a API
     useEffect(() => {
         async function loadUsers() {
             const response = await api.get('/devs', {
@@ -20,6 +21,11 @@ export default function Main({ match }) {
         }
         loadUsers();
     }, [match.params.id])
+    //Configurando o websockt
+    useEffect(() => {
+        const socket = io('http://localhost:3333');
+
+    }, [match.params.id]);
 
     async function handleLike(id) {
         //o segundo parametro do post é o corpo
