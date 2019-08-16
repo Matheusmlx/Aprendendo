@@ -1,7 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
+
 const cors = require("cors");
+
+
 const app = express();
+const server = require('http').Server(app)
+const io = require('socket.io')(server);
+
+io.on('connect', socket => {
+  console.log('Nova conexão', socket.id);
+});
+
+
 const routes = require("../src/routes/routes");
 
 mongoose.connect(
@@ -14,6 +25,8 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.listen(3333, () => {
-  console.log("Servidor ON");
+const PORT = 3333;
+
+server.listen(PORT, () => {
+  console.log(`Rodando na porta ${PORT}`);
 });
