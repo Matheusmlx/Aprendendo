@@ -9,6 +9,8 @@ import Tradutor from '../assets/tradutor.png';
 export default function Main({navigation}) {
   const language = navigation.getParam('lingua');
 
+  tradutor = language => {};
+
   let idiomas = [
     {
       lang: 'P',
@@ -39,13 +41,13 @@ export default function Main({navigation}) {
       education: 'Éducation',
     },
   ];
-  var tradutor = idiomas.filter(idiomas => idiomas.lang == language);
 
   function handleInicio() {
     navigation.navigate('Inicio');
   }
   function handleGps() {
-    navigation.navigate('Gps');
+    alert(language);
+    //navigation.navigate('Gps');
   }
   function handletradutor() {
     navigation.navigate('Tradutor');
@@ -65,21 +67,29 @@ export default function Main({navigation}) {
       <View style={styles.itens1}>
         <TouchableOpacity onPress={handleGps} style={styles.item}>
           <Image source={Gps} style={styles.imagem} />
-          <Text style={styles.textItem}>{tradutor[0].gps}</Text>
+          <Text style={styles.textItem}>
+            {language == 'P' ? idiomas[0].gps : idiomas[1].gps}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handletradutor} style={styles.item}>
           <Image source={Tradutor} style={styles.imagem} />
-          <Text style={styles.textItem}>{tradutor[0].translate}</Text>
+          <Text style={styles.textItem}>
+            {language == 'P' ? idiomas[0].translate : idiomas[1].translate}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.itens2}>
         <TouchableOpacity onPress={handleDocumentos} style={styles.item}>
           <Image source={Documentos} style={styles.imagem} />
-          <Text style={styles.textItem}>{tradutor[0].docs}</Text>
+          <Text style={styles.textItem}>
+            {language == 'P' ? idiomas[0].translate : idiomas[1].translate}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleEducacao} style={styles.item}>
           <Image source={Educacao} style={styles.imagem} />
-          <Text style={styles.textItem}>{tradutor[0].education}</Text>
+          <Text style={styles.textItem}>
+            {language == 'P' ? idiomas[0].education : idiomas[1].education}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
