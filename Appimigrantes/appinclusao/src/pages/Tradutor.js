@@ -1,6 +1,6 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 export default function Tradutor({navigation}) {
   function handleInicio() {
@@ -9,10 +9,19 @@ export default function Tradutor({navigation}) {
     });
   }
   return (
-    <View>
+    <View style={styles.container}>
       <TouchableOpacity onPress={handleInicio}>
-        <Text>Pagina Tradutor</Text>
+        <Text>PÁGINA EM CONSTRUÇÃO</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#1685BC',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
