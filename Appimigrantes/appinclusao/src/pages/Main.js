@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Logo from '../assets/LogocomTexto.png';
 import Gps from '../assets/gps.png';
 import Educacao from '../assets/educacao.png';
 import Documentos from '../assets/documentos.png';
 import Tradutor from '../assets/tradutor.png';
+import Saude from '../assets/saude.png';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Main({navigation}) {
-  const language = navigation.getParam('lingua');
+  let language = navigation.getParam('lingua');
 
   let idiomas = [
     {
@@ -16,6 +18,7 @@ export default function Main({navigation}) {
       translate: 'Tradutor',
       docs: 'Documentos',
       education: 'Educação',
+      health: 'Saúde',
     },
     {
       lang: 'E',
@@ -23,6 +26,7 @@ export default function Main({navigation}) {
       translate: 'Translate',
       docs: 'Documents',
       education: 'Education',
+      health: 'Health',
     },
     {
       lang: 'S',
@@ -30,6 +34,7 @@ export default function Main({navigation}) {
       translate: 'Traductor',
       docs: 'Documentación',
       education: 'Educacion',
+      health: 'Salud',
     },
     {
       lang: 'F',
@@ -37,14 +42,17 @@ export default function Main({navigation}) {
       translate: 'Traducteur',
       docs: 'La documentation',
       education: 'Éducation',
+      health: 'Santé',
     },
   ];
-  var tradutor = idiomas.filter(idiomas => idiomas.lang == language);
+  var tradutor = idiomas.filter(idiomas => idiomas.lang === language);
 
   function handleInicio() {
+    AsyncStorage.clear();
     navigation.navigate('Inicio');
   }
   function handleGps() {
+    //alert(tradutor);
     navigation.navigate('Gps');
   }
   function handletradutor() {
@@ -63,19 +71,23 @@ export default function Main({navigation}) {
         <Image style={styles.logo} source={Logo} />
       </TouchableOpacity>
       <View style={styles.itens1}>
-        <TouchableOpacity onPress={handleGps} style={styles.item}>
-          <Image source={Gps} style={styles.imagem} />
-          <Text style={styles.textItem}>{tradutor[0].gps}</Text>
+        <TouchableOpacity onPress={handleDocumentos} style={styles.item}>
+          <Image source={Documentos} style={styles.imagem} />
+          <Text style={styles.textItem}>{tradutor[0].docs}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handletradutor} style={styles.item}>
           <Image source={Tradutor} style={styles.imagem} />
           <Text style={styles.textItem}>{tradutor[0].translate}</Text>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity onPress={handleGps} style={styles.item}>
+        <Image source={Saude} style={styles.imagem} />
+        <Text style={styles.textItem}>{tradutor[0].health}</Text>
+      </TouchableOpacity>
       <View style={styles.itens2}>
-        <TouchableOpacity onPress={handleDocumentos} style={styles.item}>
-          <Image source={Documentos} style={styles.imagem} />
-          <Text style={styles.textItem}>{tradutor[0].docs}</Text>
+        <TouchableOpacity onPress={handleGps} style={styles.item}>
+          <Image source={Gps} style={styles.imagem} />
+          <Text style={styles.textItem}>{tradutor[0].gps}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleEducacao} style={styles.item}>
           <Image source={Educacao} style={styles.imagem} />

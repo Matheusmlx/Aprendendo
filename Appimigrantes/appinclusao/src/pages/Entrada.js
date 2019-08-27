@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import {
   View,
   TouchableOpacity,
@@ -12,8 +13,43 @@ import Logo from '../assets/Logo.png';
 
 export default function Inicial({navigation}) {
   const [language, setLanguage] = useState('');
+  const [butoonText, setbutoonText] = useState('');
 
-  function handleMain() {
+  useEffect(() => {
+    AsyncStorage.getItem('idioma').then(idioma => {
+      if (idioma) {
+        navigation.navigate('Main', {lingua: idioma});
+      }
+    });
+  });
+
+  function Tradutor(ling) {
+    setLanguage(ling);
+    var idioma = idiomas.find(lang => lang.lang == ling);
+    setbutoonText(idioma.register);
+  }
+
+  const idiomas = [
+    {
+      lang: 'P',
+      register: 'REGISTRAR',
+    },
+    {
+      lang: 'E',
+      register: 'REGISTER',
+    },
+    {
+      lang: 'S',
+      register: 'REGISTRARSE',
+    },
+    {
+      lang: 'F',
+      register: 'SINSCRIRE',
+    },
+  ];
+
+  async function handleMain() {
+    await AsyncStorage.setItem('idioma', language);
     navigation.navigate('Main', {lingua: language});
   }
 
@@ -26,7 +62,7 @@ export default function Inicial({navigation}) {
           <Picker
             style={styles.picker}
             selectedValue={language}
-            onValueChange={itemValue => setLanguage(itemValue)}>
+            onValueChange={itemValue => Tradutor(itemValue)}>
             <Picker.Item
               color={styles.pickerText}
               label="Portugûes"
@@ -43,14 +79,14 @@ export default function Inicial({navigation}) {
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="E-MAIL"
+            placeholder="MAIL"
             placeholderTextColor="#999"
             style={styles.input}
           />
         </View>
       </View>
       <TouchableOpacity onPress={handleMain} style={styles.button}>
-        <Text style={styles.buttonText}>CADASTRAR</Text>
+        <Text style={styles.buttonText}>{butoonText}</Text>
       </TouchableOpacity>
     </View>
   );
