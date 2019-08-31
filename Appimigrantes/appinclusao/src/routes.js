@@ -10,10 +10,10 @@ import Educacao from './pages/Educacao';
 
 export default createAppContainer(
   createSwitchNavigator({
-    Documentos,
     Inicio,
     Entrada,
     Main,
+    Documentos,
     Gps,
     Tradutor,
     Educacao,
