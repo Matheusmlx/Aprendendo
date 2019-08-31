@@ -1,4 +1,4 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createAppContainer, createDrawerNavigator} from 'react-navigation';
 
 import Inicio from './pages/Inicio';
 import Entrada from './pages/Entrada';
@@ -9,7 +9,7 @@ import Documentos from './pages/Documentos';
 import Educacao from './pages/Educacao';
 
 export default createAppContainer(
-  createSwitchNavigator({
+  createDrawerNavigator({
     Inicio,
     Entrada,
     Main,
