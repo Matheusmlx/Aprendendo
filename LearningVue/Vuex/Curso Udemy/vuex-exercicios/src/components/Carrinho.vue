@@ -29,11 +29,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    total() {
-      return this.$store.getters.valorTotal;
-    },
+    //utiliza o operador spread porque não pode colocar mais do que uma propriedades computadas
+    ...mapGetters({
+      total: "valorTotal"
+    }),
+    // total() {
+    //   return this.$store.getters.valorTotal;
+    // },
     produtos() {
       return this.$store.state.produtos;
     }

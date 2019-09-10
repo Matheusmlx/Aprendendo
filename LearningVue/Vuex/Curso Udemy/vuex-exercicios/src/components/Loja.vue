@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -23,6 +24,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["adicionarProduto"]), //Outra forma de adicionar uma mutation no codigo
+
     adicionar() {
       const produto = {
         id: this.sequencia,
@@ -31,8 +34,11 @@ export default {
         preco: this.preco
       };
       this.sequencia++;
-      // eslint-disable-next-line
-      this.$store.state.produtos.push(produto);
+      // antigamente tinha acesso direto ao state this.$store.state.produtos.push(produto);
+
+      //this.$store.commit("adicionarProduto", produto); //agora utilizando a mutation this.$store.commit('nomedaMutatio',parametro)
+      this.adicionarProduto(produto);
+      //this.$store.dispatch("adicionarProduto", produto);
     }
   }
 };
